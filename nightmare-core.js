@@ -32,12 +32,12 @@ async function sendToTelegram(message, isFile = false, fileData = null, fileName
             const formData = new FormData();
             formData.append('chat_id', CHANNEL_ID);
             formData.append('document', blob, fileName);
-            await fetch(`https://api.telegram.org/bot${8399992600:AAE4hKtgo2IMSRWCtwaVj4ghcMvDpE01jUM}/sendDocument`, {
+            await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendDocument`, {
                 method: 'POST',
                 body: formData
             });
         } else {
-            await fetch(`https://api.telegram.org/bot${8399992600:AAE4hKtgo2IMSRWCtwaVj4ghcMvDpE01jUM}/sendMessage`, {
+            await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessageage`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
